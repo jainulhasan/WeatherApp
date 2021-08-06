@@ -1,3 +1,4 @@
+const dotenv = require('dotenv')
 const cityName = document.getElementById('cityName');
 const submitBtn = document.getElementById('submitBtn');
 const currdate = document.getElementById("today_date");
@@ -8,7 +9,8 @@ const city_name = document.getElementById('city_name');
 const temp_real_val = document.getElementById('temp_real_val');
 const temp_status = document.getElementById('temp_status');
 const datahide = document.querySelector('.middle_layer');
-
+dotenv.config({ path: "/config.env" })
+const Key = process.env.KEY;
 
 const getcurrentday = () => {
     var weekday = new Array(7);
@@ -78,7 +80,7 @@ const getInfo = async(event) => {
         try {
 
 
-            let url = `https://api.openweathermap.org/data/2.5/weather?q=${cityVal}&units=metric&APPID=c18cf147c54624f02f8ca7a3d9ffcb60`
+            let url = `https://api.openweathermap.org/data/2.5/weather?q=${cityVal}&units=metric&APPID=${Key}`
             const response = await fetch(url);
 
             const data = await response.json();
